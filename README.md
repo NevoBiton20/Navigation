@@ -1,15 +1,13 @@
 ## Algorithm Workflow
 
-```text
+```
 RINEX 4 input
     ->
 GPS pseudorange extraction
     ->
-SP3 orbit loading / automatic download
+SP3 orbit download
     ->
 SP3 satellite position parsing
-    ->
-GPS-only satellite selection
     ->
 Pseudorange plausibility filtering
     ->
@@ -38,8 +36,6 @@ PDOP geometry validation
 Earth-surface sanity validation
     ->
 Inter-epoch movement validation
-    ->
-Warm-start protection
     ->
 ECEF to latitude/longitude/height conversion
     ->
