@@ -1,6 +1,7 @@
 ## Algorithm Workflow
 
 ```
+Workflow:
 RINEX 4 input
     Receives the raw GNSS observation file recorded by the receiver.
     ->
