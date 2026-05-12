@@ -1,51 +1,49 @@
-RINEX 4 Observation File
+## Algorithm Workflow
+
+```text
+RINEX 4 input
     ->
-Parse GPS pseudorange measurements per epoch
+GPS pseudorange extraction
     ->
-Extract recording time range
+SP3 orbit loading / automatic download
     ->
-Load local SP3 file OR auto-download matching SP3 with gnss-lib-py
+SP3 satellite position parsing
     ->
-Parse SP3 satellite ECEF positions
+GPS-only satellite selection
     ->
-For each epoch, keep GPS-only observations
+Pseudorange plausibility filtering
     ->
-Pseudorange plausibility filter
+SNR-based filtering
     ->
-SNR filter
+Signal transmission-time computation
     ->
-For each satellite, compute signal travel time
+Lagrange interpolation of satellite position
     ->
-Compute satellite transmission time
+Earth-rotation correction
     ->
-Interpolate satellite position at transmission time using Lagrange interpolation
+Elevation-mask filtering
     ->
-Apply Earth rotation correction
+Satellite clock and atmospheric corrections
     ->
-Elevation mask filter
+Pseudorange equation construction
     ->
-Apply satellite clock / atmospheric corrections
+Iterative least-squares positioning
     ->
-Build pseudorange equations
+Minimum-satellites validation
     ->
-Solve receiver ECEF position + receiver clock bias using iterative least squares
+Residual-based outlier rejection
     ->
-Minimum satellite count check
+PDOP geometry validation
     ->
-Residual outlier rejection
+Earth-surface sanity validation
     ->
-PDOP geometry filter
-    ->
-Earth-surface sanity check
-    ->
-Inter-epoch jump filter
+Inter-epoch movement validation
     ->
 Warm-start protection
     ->
-Convert ECEF position to latitude, longitude, and height
+ECEF to latitude/longitude/height conversion
     ->
-Estimate velocity from consecutive positions
+Velocity estimation
     ->
-Export CSV file
-    ->
-Export KML path for Google Earth visualization
+CSV + KML export
+```
